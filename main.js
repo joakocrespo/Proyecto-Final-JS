@@ -20,12 +20,12 @@ let seleccionUsuario = prompt("(1)Ford Escort $2500<->(2)Suzuki Fun $2750<->(3)C
 
 while (seleccionUsuario) {
     if (seleccionUsuario == 1){
-        let metodoPago = prompt("Ha seleccionado Ford Escort, desea pagar en efectivo o con tarjeta? Escriba su respuesta.")
+        let metodoPago = prompt("Ha seleccionado Ford Escort, desea pagar en efectivo o con tarjeta? Escriba su respuesta.").toLowerCase()
         if(metodoPago == "efectivo"){
             let precio = 2500
             let compraAuto = confirm("Pagando en efectivo el precio con descuento es el siguiente $" + calculadoraEfect(precio,pagoEfectivo,precio) + " ¿Desea pagar con este medio de pago?")
             if (compraAuto === false){
-                metodoPago = prompt("Ha seleccionado Ford Escort, desea pagar en efectivo o con tarjeta? Escriba su respuesta.")
+                metodoPago = prompt("Ha seleccionado Ford Escort, desea pagar en efectivo o con tarjeta? Escriba su respuesta.").toLowerCase()
                 if (metodoPago == "tarjeta"){
                     let compraAuto = confirm ("Pagando con tarjeta tiene un recargo del 15%, el precio es el siguiente $" + calculadoraTarjeta(precio,pagoTarjeta,precio) + " ¿Desea pagar con este medio de pago?")
                     if (compraAuto ==true){
@@ -43,7 +43,7 @@ while (seleccionUsuario) {
             let precio =2500
             let compraAuto = confirm ("Pagando con tarjeta tiene un recargo del 15%, el precio es el siguiente $" + calculadoraTarjeta(precio,pagoTarjeta,precio) + " ¿Desea pagar con este medio de pago?")
             if (compraAuto === false){
-                metodoPago = prompt("Ha seleccionado Ford Escort, desea pagar en efectivo o con tarjeta? Escriba su respuesta.")
+                metodoPago = prompt("Ha seleccionado Ford Escort, desea pagar en efectivo o con tarjeta? Escriba su respuesta.").toLowerCase()
                 if (metodoPago == "efectivo"){
                     let compraAuto = confirm ("Pagando en efectivo el precio con descuento es el siguiente $" + calculadoraEfect(precio,pagoEfectivo,precio) + " ¿Desea pagar con este medio de pago?")
                     if (compraAuto ==true){
@@ -60,12 +60,13 @@ while (seleccionUsuario) {
         }
         }
     else if (seleccionUsuario == 2){
-        let metodoPago = prompt("Ha seleccionado Suzuki Fun, desea pagar en efectivo o con tarjeta? Escriba su respuesta.")
+        let metodoPago = prompt("Ha seleccionado Suzuki Fun, desea pagar en efectivo o con tarjeta? Escriba su respuesta.").toLowerCase()
         if(metodoPago == "efectivo"){
             let precio = 2750
             let compraAuto = confirm("Pagando en efectivo el precio con descuento es el siguiente $" + calculadoraEfect(precio,pagoEfectivo,precio) + " ¿Desea pagar con este medio de pago?")
             if (compraAuto === false){
-                metodoPago = prompt("Ha seleccionado Suzuki Fun, desea pagar en efectivo o con tarjeta? Escriba su respuesta.")
+                metodoPago = prompt("Ha seleccionado Suzuki Fun, desea pagar en efectivo o con tarjeta? Escriba su respuesta.").toLowerCase()
+                
                 if (metodoPago == "tarjeta"){
                     let compraAuto = confirm ("Pagando con tarjeta tiene un recargo del 15%, el precio es el siguiente $" + calculadoraTarjeta(precio,pagoTarjeta,precio) + " ¿Desea pagar con este medio de pago?")
                     if (compraAuto ==true){
@@ -83,7 +84,7 @@ while (seleccionUsuario) {
             let precio =2750
             let compraAuto = confirm ("Pagando con tarjeta tiene un recargo del 15%, el precio es el siguiente $" + calculadoraTarjeta(precio,pagoTarjeta,precio) + " ¿Desea pagar con este medio de pago?")
             if (compraAuto === false){
-                metodoPago = prompt("Ha seleccionado Suzuki Fun, desea pagar en efectivo o con tarjeta? Escriba su respuesta.")
+                metodoPago = prompt("Ha seleccionado Suzuki Fun, desea pagar en efectivo o con tarjeta? Escriba su respuesta.").toLowerCase()
                 if (metodoPago == "efectivo"){
                     let compraAuto = confirm("Pagando en efectivo el precio con descuento es el siguiente $" + calculadoraEfect(precio,pagoEfectivo,precio) + " ¿Desea pagar con este medio de pago?")
                     if (compraAuto == true){
@@ -100,12 +101,12 @@ while (seleccionUsuario) {
         }
     }
     else if (seleccionUsuario == 3){
-        let metodoPago = prompt("Ha seleccionado Chevrolet Corsa, desea pagar en efectivo o con tarjeta? Escriba su respuesta.")
+        let metodoPago = prompt("Ha seleccionado Chevrolet Corsa, desea pagar en efectivo o con tarjeta? Escriba su respuesta.").toLowerCase()
         if(metodoPago == "efectivo"){
             let precio = 3000
             let compraAuto = confirm("Pagando en efectivo el precio con descuento es el siguiente $" + calculadoraEfect(precio,pagoEfectivo,precio) + " ¿Desea pagar con este medio de pago?")
             if (compraAuto === false){
-                metodoPago = prompt("Ha seleccionado Chevrolet Corsa, desea pagar en efectivo o con tarjeta? Escriba su respuesta.")
+                metodoPago = prompt("Ha seleccionado Chevrolet Corsa, desea pagar en efectivo o con tarjeta? Escriba su respuesta.").toLowerCase()
                 if (metodoPago == "tarjeta"){
                     let compraAuto = confirm ("Pagando con tarjeta tiene un recargo del 15%, el precio es el siguiente $" + calculadoraTarjeta(precio,pagoTarjeta,precio) + " ¿Desea pagar con este medio de pago?")
                     if (compraAuto ==true){
@@ -123,7 +124,7 @@ while (seleccionUsuario) {
             let precio =3000
             let compraAuto = confirm ("Pagando con tarjeta tiene un recargo del 15%, el precio es el siguiente $" + calculadoraTarjeta(precio,pagoTarjeta,precio) + " ¿Desea pagar con este medio de pago?")
             if (compraAuto === false){
-                metodoPago = prompt("Ha seleccionado Chevrolet Corsa, desea pagar en efectivo o con tarjeta? Escriba su respuesta.")
+                metodoPago = prompt("Ha seleccionado Chevrolet Corsa, desea pagar en efectivo o con tarjeta? Escriba su respuesta.").toLowerCase()
                 if (metodoPago == "efectivo"){
                     let compraAuto = confirm("Pagando en efectivo el precio con descuento es el siguiente $" + calculadoraEfect(precio,pagoEfectivo,precio) + " ¿Desea pagar con este medio de pago?")
                     if (compraAuto == true){
@@ -138,6 +139,9 @@ while (seleccionUsuario) {
                 break
             }
         }
+    }
+    else (seleccionUsuario == "" || seleccionUsuario >3); {
+        alert ("Tas aburrido genio?")
     }
     break;
 }
