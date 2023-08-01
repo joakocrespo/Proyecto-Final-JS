@@ -72,25 +72,25 @@ while (seleccionUsuario) {
                   
                 // Función para agregar un nuevo producto
                 function ingresoEquipo() {
-                    const nombre = prompt("Ingrese el nombre del producto:");
-                    const precio = parseFloat(prompt("Ingrese el precio del producto:"));
-                    const memoria = prompt("Ingrese la memoria del producto:");
-                    const stock = parseInt(prompt("Ingrese el stock del producto:"));
+                    const nombre = prompt("Ingrese el nombre del producto:")
+                    const precio = parseFloat(prompt("Ingrese el precio del producto:"))
+                    const memoria = prompt("Ingrese la memoria del producto:")
+                    const stock = parseInt(prompt("Ingrese el stock del producto:"))
                   
-                    const ingresoEquipo = new Equipo(nombre, precio, memoria, stock);
+                    const ingresoEquipo = new Equipo(nombre, precio, memoria, stock)
   
-                    const stockCopia = stockEquipos.slice();
-                    stockCopia.push(ingresoEquipo);
+                    const stockCopia = stockEquipos.slice()
+                    stockCopia.push(ingresoEquipo)
   
                     alert("¡Equipo agregado satisfactoriamente! Por consola va a poder ver el stock actual actualizado");
                     
                     const fechaHoraActual = new Date().toLocaleString()
 
-                    console.log("Stock actualizado el " + fechaHoraActual, stockCopia);
+                    console.log("Stock actualizado el " + fechaHoraActual, stockCopia)
                     console.table(stockCopia[4])
                   }
                   
-                  ingresoEquipo();
+                  ingresoEquipo()
                   
                 return
               } else {
@@ -102,7 +102,7 @@ while (seleccionUsuario) {
             alert("Ha agotado el número de intentos permitidos. Por favor, inténtelo más tarde.")
           }
           
-          ingresoAdmin();
+          ingresoAdmin()
     }break
 }
 
