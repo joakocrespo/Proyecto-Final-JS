@@ -1,26 +1,34 @@
 body {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100dvh;
+    flex-flow: column;
+    gap: 10px;
 }
 
-body div {
+main {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.card {
     width: 100%;
-
 }
 
-body h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: red;
-    font-family: 'Arial Narrow Bold', sans-serif;
-    border-radius: 10px;
-    width: 30%;
-    height: 50px;
-    text-shadow: 1px 1px rgba(255, 255, 255, 0.683);
+/* -------------  media queries  ------------- */
+
+@media (min-width: 550px) {
+    main {
+        flex-flow: row wrap;
+    }
+    body main .card {
+        width: 49%;
+    }
+}
+
+@media (min-width: 950px){
+    body main .card {
+        width: 24%;
+    }
 }

@@ -1,20 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- link css -->
     <link rel="stylesheet" href="./style.css">
-    <title>Catalogo Autos Usados</title>
+    <!-- link bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Document</title>
 </head>
+
 <body>
+
+    <!---------------- fin navbar -------------->
+
+    <header>
+        <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="./assets/640px-Apple-logo.png" alt="Logo" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    iShop
+                </a>
+                <a class="navbar-brand" href="#">Apple Store</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Equipos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!---------------- fin navbar -------------->
+
+    <!------------ buscador -------------->
+
     <div>
-        <h1>
-            Catálogo de Autos
-        </h1>
+        <form class="container-fluid">
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1"><img src="./assets/simbolo-buscar-png.png" alt=""
+                        width="12" height="12"></span>
+                <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar"
+                    aria-describedby="basic-addon1">
+            </div>
+        </form>
     </div>
-    
+
+    <!------------ fin buscador -------------->
+
+    <!-------------- main ----------------->
+
+    <main>
+        <div class="card"">
+            <img src=" ./assets/iphonex-main.jpg" class="card-img-top" alt="..." height="300px">
+            <div class="card-body">
+                <h5 class="card-title">iPhone X</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+        </div>
+        <div class="card"">
+            <img src=" ./assets/iphone11-main.webp" class="card-img-top" alt="..." height="300px">
+            <div class="card-body">
+                <h5 class="card-title">iPhone 11</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+        </div>
+        <div class="card"">
+            <img src=" ./assets/iphone12-main.jpg" class="card-img-top" alt="..." height="300px">
+            <div class="card-body">
+                <h5 class="card-title">iPhone 12</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+        </div>
+        <div class="card"">
+            <img src=" ./assets/iphone13-pro-main.jpg" class="card-img-top" alt="..." height="300px">
+            <div class="card-body">
+                <h5 class="card-title">iPhone 13 Pro</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+        </div>
+    </main>
+
+    <!---------------------- fin main ------------------------>
+
+    <!----------------------- footer ------------------------->
+
+    <footer class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="./assets/640px-Apple-logo.png" alt="Logo" width="30" height="24"
+                    class="d-inline-block align-text-top">iShop</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Equipos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Contacto</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+            </form>
+        </div>
+    </footer>
+
+    <!-------------------- fin de footer --------------------->
 
 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
     <script src="./main.js"></script>
 </body>
+
 </html>
