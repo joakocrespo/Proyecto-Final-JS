@@ -1,121 +1,163 @@
 // ------------  Creando FUNCION CONSTRUCTORA  ----------------
 
-function Equipo(nombre, precio, memoria, stock) {
-
-    this.nombre = nombre
-    this.precio = precio
-    this.memoria = memoria
-    this.stock = stock
-
+function Equipo(nombre, precio, memoria, color, imagen) {
+    this.nombre = nombre;
+    this.precio = precio;
+    this.memoria = memoria;
+    this.color = color;
+    this.imagen = imagen;
 }
 
 // ---------------  Creando Objetos con la Funcion Constructora  --------------
 
-const iPhX = new Equipo ("iphone x", 90000, "128gb", 3)
-const iPh11 = new Equipo ("iphone 11", 115000, "128gb", 2)
-const iPh12 = new Equipo ("iphone 12", 180000, "256gb", 1)
-const iPh13Pro = new Equipo ("iphone 13 pro", 250000, "512gb", 2)
+const iPhX = new Equipo("iphone x", "$90000", "Almacenamiento: 128gb", "Color: Azul", "./assets/iphonex-main.jpg");
+const iPh11 = new Equipo("iphone 11", "$115000", "Almacenamiento: 128gb", "Color: Gris Espacial", "./assets/iphone11-main.webp");
+const iPh12 = new Equipo("iphone 12", "$180000", "Almacenamiento: 256gb", "Color: Rojo", "./assets/iphone12-main.jpg");
+const iPh13Pro = new Equipo("iphone 13 pro", "$250000", "Almacenamiento: 512gb", "Color: Blanco", "./assets/iphone13-pro-main.jpg");
 
 // ------------------  Creando Array de Objetos  --------------------
 
-const stockEquipos = [iPhX, iPh11, iPh12, iPh13Pro]
+const stockEquipos = [iPhX, iPh11, iPh12, iPh13Pro];
 
+const plantillaCard = '<div class="card"><img src="" class="card-img-top" alt="..." height="200px"><div class="card-body"><h5 class="card-title" id="infoNombre"></h5><p class="card-text" id="infoPrecio">Precio: </p><p class="card-text" id="infoMemoria"></p><p class="card-text" id="infoColor"></p><button id="agregar-carrito" class="btn btn-primary agregar-carrito" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"aria-controls="offcanvasRight">Agregar al Carrito</button><button  class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"aria-controls="offcanvasRight">Mostrar Carrito</button></div></div>';
 
-alert ("Bienvenido a iShop, la tienda de productos Apple")
+// Funcion para filtrar Stock por nombre de Equipo
 
-let seleccionUsuario = prompt("Desea ingresar como Cliente o Administrador? Escriba la respuesta en el siguiente campo").toLowerCase()
+function buscarDisponibilidad() {
+    const nombreCelular = document.getElementById("buscadorInput").value;
+    const equipoEncontrado = stockEquipos.find(celular => celular.nombre == nombreCelular);
 
-while (seleccionUsuario) {
-    if (seleccionUsuario == "cliente"){
-        
-        let decisionCliente = confirm ("¿Desea buscar algun equipo en especifico?") 
-        if(decisionCliente == true) {
-            const equipoBuscado = prompt("Ingrese el nombre y modelo del equipo que desea buscar:").toLocaleLowerCase()
-            const equipoEncontrado = []
-            for (let i = 0; i < stockEquipos.length; i++) {
-                if (stockEquipos[i].nombre == equipoBuscado) {
-                    equipoEncontrado.push(stockEquipos[i])
-                }
-            }
-            if (equipoEncontrado.length > 0) {
-                console.table(equipoEncontrado)
-                alert("Felicitaciones! El equipo " + equipoBuscado + " se encuentra disponible")
-            } else {
-                alert("No contamos con el equipo " + equipoBuscado + " en nuestro stock, o no ha ingresado un valor valido, en ese caso reintente la busqueda.")
-            }
-        }else {
-            alert("A continuación le mostraremos la lista de stock disponible en iShop")
-            console.table(stockEquipos[0])
-            console.table(stockEquipos[1])
-            console.table(stockEquipos[2])
-            console.table(stockEquipos[3])
-        }
-    }else if(seleccionUsuario == "administrador" || seleccionUsuario == "admin") {
+    if (equipoEncontrado) {
+        const resultadoDiv = document.getElementById("resultado");
 
-        alert("Bienvenido, a continuacion vamos a verificar su identidad con su nombre de usuario y contraseña, recuerdes que tiene solo 3 intentos")
+        // Crear un nuevo elemento para mostrar el resultado
+        const cardElement = document.createElement("div");
+        cardElement.innerHTML = plantillaCard;
 
-        // Creando funcion para ingreso de usuario con limite de intentos.
-        function ingresoAdmin() {
+        // Relleno de la card Resultado segun el equipo filtrado
+        cardElement.querySelector("#infoNombre").textContent = equipoEncontrado.nombre;
+        cardElement.querySelector("#infoPrecio").textContent = equipoEncontrado.precio;
+        cardElement.querySelector("#infoMemoria").textContent = equipoEncontrado.memoria;
+        cardElement.querySelector("#infoColor").textContent = equipoEncontrado.color;
+        cardElement.querySelector("img").setAttribute("src", equipoEncontrado.imagen);
 
-            // Usuario y contraseña 
-            const usuarioAdmin = "administrador"
-            const contraseniaAdmin = "soyadmin123"
-             
-            let intentos = 3
-          
-            while (intentos > 0) {
-              const usuario = prompt("Ingrese su nombre de usuario")
-              const contrasenia = prompt("Ingrese su contraseña")
-          
-              if (usuario === usuarioAdmin && contrasenia === contraseniaAdmin) {
-                alert("¡Validacion de administrador exitosa! A continuacion vas a poder agregar equipos a la lista de stock")
-                  
-                // Función para agregar un nuevo producto
-                function ingresoEquipo() {
-                    const nombre = prompt("Ingrese el nombre del producto:")
-                    const precio = parseFloat(prompt("Ingrese el precio del producto:"))
-                    const memoria = prompt("Ingrese la memoria del producto:")
-                    const stock = parseInt(prompt("Ingrese el stock del producto:"))
-                  
-                    const ingresoEquipo = new Equipo(nombre, precio, memoria, stock)
-  
-                    const stockCopia = stockEquipos.slice()
-                    stockCopia.push(ingresoEquipo)
-  
-                    alert("¡Equipo agregado satisfactoriamente! Por consola va a poder ver el stock actual actualizado");
-                    
-                    const fechaHoraActual = new Date().toLocaleString()
+        // Borrar busqueda anterior antes de agregar nueva card
+        resultadoDiv.innerHTML = "";
 
-                    console.log("Stock actualizado el " + fechaHoraActual, stockCopia)
-                    console.table(stockCopia[4])
-                  }
-                  
-                  ingresoEquipo()
-                  
-                return
-              } else {
-                intentos--
-                alert("Usuario o contraseña incorrectos. Le quedan " + intentos + " intentos.")
-              }
-            }
-          
-            alert("Ha agotado el número de intentos permitidos. Por favor, inténtelo más tarde.")
-          }
-          
-          ingresoAdmin()
-    }break
+        // Agregando la card con le resultado al DOM
+        resultadoDiv.appendChild(cardElement);
+    } else {
+        document.getElementById("resultado").textContent = `No se encontró el celular ${nombreCelular} en el stock.`;
+    }
 }
 
+document.getElementById("botonBusqueda").addEventListener("click", buscarDisponibilidad);
+
+// Carrito de compras
+const carrito = [];
+
+// Función para agregar al carrito
+function agregarCarrito(producto) {
+    carrito.push(producto);
+}
+
+// Función para calcular el precio total
+function calcularPreciofinal() {
+    return carrito.reduce((total, producto) => total + parseFloat(producto.precio.substring(1)), 0);
+}
+
+// Función para actualizar el contenido del offcanvas
+function actualizarCarrito() {
+    const offcanvasContent = document.querySelector(".offcanvas-body");
+    offcanvasContent.innerHTML = "";
+
+    if (carrito.length === 0) {
+        offcanvasContent.innerHTML = "<h2>El carrito está vacío.</h2>";
+    } else {
+        carrito.forEach((producto, index) => {
+            const productInfo = document.createElement("p");
+            productInfo.textContent = `${producto.nombre} - ${producto.precio}`;
+            offcanvasContent.appendChild(productInfo);
+
+            // Agregar botón de eliminación para cada producto
+            const eliminarProducto = botonEliminar(index);
+            offcanvasContent.appendChild(eliminarProducto);
+        });
+
+        // Mostrar el precio total
+        const totalPriceElement = document.createElement("h3");
+        totalPriceElement.textContent = `Precio Total: $${calcularPreciofinal().toFixed(2)}`;
+        offcanvasContent.appendChild(totalPriceElement);
+    }
+}
+
+// Función para crear un botón de eliminación para cada producto en el carrito
+function botonEliminar(index) {
+    const eliminarProducto = document.createElement("button");
+    eliminarProducto.classList.add("btn", "btn-danger", "eliminar-producto");
+    eliminarProducto.type = "button";
+    eliminarProducto.dataset.index = index;
+    eliminarProducto.textContent = "Eliminar";
+    return eliminarProducto;
+}
+
+// Función para guardar el carrito en el localStorage
+function guardaCarritoLS() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+// Función para mostrar un mensaje de que el carrito se actualizó
+function msjActualizacion() {
+    Swal.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: 'El carrito se ha actualizado!',
+        showConfirmButton: false,
+        timer: 1000
+      })
+}
+
+// Evento para agregar al carrito desde resultados de búsqueda
+document.getElementById("resultado").addEventListener("click", function(event) {
+    const target = event.target;
+
+    if (target.id === "agregar-carrito") {
+        const card = target.closest(".card");
+        const nombre = card.querySelector("#infoNombre").textContent;
+        const equipoEncontrado = stockEquipos.find(celular => celular.nombre === nombre);
+
+        if (equipoEncontrado) {
+            agregarCarrito(equipoEncontrado);
+            actualizarCarrito();
+            guardaCarritoLS();
+            msjActualizacion(`Se agregó ${equipoEncontrado.nombre} al carrito.`);
+        }
+    }
+});
 
 
+// Evento para eliminar un producto del carrito
+document.querySelector(".offcanvas-body").addEventListener("click", function (event) {
+    const target = event.target;
 
+    if (target.classList.contains("eliminar-producto")) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'El producto será eliminado del carrito.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        });
 
-
-
-
-
-
-
-
-
-
+        Swal.getPopup().querySelector('.swal2-confirm').addEventListener('click', function() {
+            const index = parseInt(target.dataset.index);
+            if (!isNaN(index) && index >= 0 && index < carrito.length) {
+                carrito.splice(index, 1);
+                actualizarCarrito();
+                guardaCarritoLS();
+                msjActualizacion(`Se eliminó un producto del carrito.`);
+            }
+        });
+    }
+});

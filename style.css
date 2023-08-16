@@ -10,25 +10,41 @@ main {
     align-items: center;
     gap: 10px;
     padding: 10px;
+    height: 100%;
+}
+
+.main-index{
+    display: flex;
+    margin-top: -.5rem;
+}
+
+.tittle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card {
     width: 100%;
 }
 
+#resultado{
+    width: 100%;
+    height: 100%;
+    margin: .25rem;
+    border-radius: 20px;
+    background-image: url(./assets/640px-Apple-logo.png);
+    background-color: rgb(74, 74, 74);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: aliceblue;
+}
+
+
 /* -------------  media queries  ------------- */
 
-@media (min-width: 550px) {
-    main {
-        flex-flow: row wrap;
-    }
-    body main .card {
-        width: 49%;
-    }
-}
-
-@media (min-width: 950px){
-    body main .card {
-        width: 24%;
-    }
-}
