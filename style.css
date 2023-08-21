@@ -28,21 +28,61 @@ main {
     width: 100%;
 }
 
+
 #resultado{
-    width: 100%;
-    height: 100%;
-    margin: .25rem;
-    border-radius: 20px;
-    background-image: url(./assets/640px-Apple-logo.png);
-    background-color: rgb(74, 74, 74);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
     display: flex;
-    align-items: center;
+    flex-flow: wrap;
     justify-content: center;
-    font-size: 30px;
-    color: aliceblue;
+    gap: 5px;
+}
+
+.card-main {
+    display: flex;
+    gap: 2px;
+    flex-flow: column;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+.card-main img {
+    
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.card-main h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.card-main p {
+    font-size: 16px;
+    color: #666;
+}
+
+.boton-comprar {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #0d6efd;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+
+
+.boton-comprar:hover {
+    background-color: #0056b3;
 }
 
 
