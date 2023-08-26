@@ -27,23 +27,19 @@ const stockEquipos = [iPhX, iPh11, iPh11Pro, iPh11ProMax, iPh12, iPh12Pro, iPh13
 
 const plantillaCard = '<div class="card-main"><img src="" alt="Producto"><h2 class="infoNombre">Nombre del Producto</h2><p class="infoPrecio">Precio: $99.99</p><p class="infoMemoria">Memoria: 128GB</p><p class="infoColor">Color: Negro</p><button class="boton-comprar agregar-carrito">Comprar</button><button class="btn btn-primary mostrar-carrito" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Mostrar Carrito</button></div>'
 
-// Obtén el elemento donde deseas mostrar las tarjetas (por ejemplo, un div con el id "resultado")
 const resultadoDiv = document.querySelector("#resultado");
 
-// Recorre el array de objetos y crea las tarjetas para cada uno
 stockEquipos.forEach(equipo => {
-  // Crea un div y establece la plantilla HTML
+  
   const cardDiv = document.createElement("div");
   cardDiv.innerHTML = plantillaCard;
 
-  // Actualiza los elementos dentro de la plantilla con los datos del objeto
   cardDiv.querySelector("img").src = equipo.imagen;
   cardDiv.querySelector(".infoNombre").textContent = equipo.nombre;
   cardDiv.querySelector(".infoPrecio").textContent = `Precio: ${equipo.precio}`;
   cardDiv.querySelector(".infoMemoria").textContent = equipo.memoria;
   cardDiv.querySelector(".infoColor").textContent = equipo.color;
 
-  // Agrega la tarjeta completa al div donde deseas mostrar los resultados
   resultadoDiv.appendChild(cardDiv);
 });
 
@@ -56,21 +52,17 @@ function buscarDisponibilidad() {
     if (equipoEncontrado) {
         const resultadoDiv = document.getElementById("resultado");
 
-        // Crear un nuevo elemento para mostrar el resultado
         const cardElement = document.createElement("div");
         cardElement.innerHTML = plantillaCard;
 
-        // Relleno de la card Resultado segun el equipo filtrado
         cardElement.querySelector(".infoNombre").textContent = equipoEncontrado.nombre;
         cardElement.querySelector(".infoPrecio").textContent = equipoEncontrado.precio;
         cardElement.querySelector(".infoMemoria").textContent = equipoEncontrado.memoria;
         cardElement.querySelector(".infoColor").textContent = equipoEncontrado.color;
         cardElement.querySelector("img").setAttribute("src", equipoEncontrado.imagen);
 
-        // Borrar busqueda anterior antes de agregar nueva card
         resultadoDiv.innerHTML = "";
 
-        // Agregando la card con le resultado al DOM
         resultadoDiv.appendChild(cardElement);
     } else {
         document.getElementById("resultado").textContent = `No se encontró el celular ${nombreCelular} en el stock.`;
@@ -86,7 +78,7 @@ function guardaCarritoLS() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-// Llamada para restaurar el carrito del local storage
+// Restaurar el carrito del local storage
 function restauraCarritoLS() {
     const carritoGuardado = localStorage.getItem("carrito");
     if (carritoGuardado) {
@@ -95,11 +87,8 @@ function restauraCarritoLS() {
     }
 }
 
-// Restaura el carrito al cargar la página
 restauraCarritoLS();
 
-
-// Función para agregar al carrito
 function agregarCarrito(producto) {
     carrito.push(producto);
 }
@@ -134,7 +123,7 @@ function actualizarCarrito() {
     }
 }
 
-// Función para crear un botón de eliminación para cada producto en el carrito
+// Función botón de eliminación en el carrito
 function botonEliminar(index) {
     const eliminarProducto = document.createElement("button");
     eliminarProducto.classList.add("btn", "btn-danger", "eliminar-producto");
