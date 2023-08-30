@@ -1,6 +1,7 @@
 // ------------  Creando FUNCION CONSTRUCTORA  ----------------
 
-function Equipo(nombre, precio, memoria, color, imagen) {
+function Equipo(id, nombre, precio, memoria, color, imagen) {
+    this.id = id;
     this.nombre = nombre;
     this.precio = precio;
     this.memoria = memoria;
@@ -10,40 +11,38 @@ function Equipo(nombre, precio, memoria, color, imagen) {
 
 // ---------------  Creando Objetos con la Funcion Constructora  --------------
 
-const iPhX = new Equipo("iphone x", "$90000", "Almacenamiento: 128gb", "Color: Azul", "./assets/iphonex-main.jpg");
-const iPh11 = new Equipo("iphone 11", "$115000", "Almacenamiento: 128gb", "Color: Gris Espacial", "./assets/iphone11-main.webp");
-const iPh11Pro = new Equipo("iphone 11 pro", "$125000", "Almacenamiento: 128gb", "Color: Gris Espacial", "./assets/iphone11-main.webp");
-const iPh11ProMax = new Equipo("iphone 11 pro max", "$130000", "Almacenamiento: 128gb", "Color: Gris Espacial", "./assets/iphone11-main.webp");
-const iPh12 = new Equipo("iphone 12", "$180000", "Almacenamiento: 256gb", "Color: Rojo", "./assets/iphone12-main.jpg");
-const iPh12Pro = new Equipo("iphone 12 pro", "$195000", "Almacenamiento: 512gb", "Color: Blanco", "./assets/iphone13-pro-main.jpg");
-const iPh13 = new Equipo("iphone 13", "$205000", "Almacenamiento: 512gb", "Color: Blanco", "./assets/iphone13-pro-main.jpg");
-const iPh13Pro = new Equipo("iphone 13 pro", "$250000", "Almacenamiento: 512gb", "Color: Blanco", "./assets/iphone13-pro-main.jpg");
-const iPh13ProMax = new Equipo("iphone 13 pro Max", "$280000", "Almacenamiento: 512gb", "Color: Blanco", "./assets/iphone13-pro-main.jpg");
+const iPhX = new Equipo("iphone x", "iPhone X", 300, "Almacenamiento: 128gb", "Color: Azul", "./assets/iphonex-main.jpg");
+const iPh11 = new Equipo("iphone 11","iPhone 11", 400, "Almacenamiento: 128gb", "Color: Gris Espacial", "./assets/iphone11-main.webp");
+const iPh11Pro = new Equipo("iphone 11 pro","iPhone 11 Pro", 430, "Almacenamiento: 128gb", "Color: Gris Espacial", "./assets/iphone11-main.webp");
+const iPh11ProMax = new Equipo("iphone 11 pro max","iPhone 11 Pro MAX", 490, "Almacenamiento: 128gb", "Color: Gris Espacial", "./assets/iphone11-main.webp");
+const iPh12 = new Equipo("iphone 12","iPhone 12", 510, "Almacenamiento: 256gb", "Color: Rojo", "./assets/iphone12-main.jpg");
+const iPh12Pro = new Equipo("iphone 12 pro","iPhone 12 Pro", 570, "Almacenamiento: 512gb", "Color: Blanco", "./assets/iphone13-pro-main.jpg");
+const iPh13 = new Equipo("iphone 13","iPhone 13", 630, "Almacenamiento: 512gb", "Color: Blanco", "./assets/iphone13-pro-main.jpg");
+const iPh13Pro = new Equipo("iphone 13 pro","iPhone 13 Pro", 680, "Almacenamiento: 512gb", "Color: Blanco", "./assets/iphone13-pro-main.jpg");
+const iPh13ProMax = new Equipo("iphone 13 pro Max","iPhone 13 Pro MAX", 720, "Almacenamiento: 512gb", "Color: Blanco", "./assets/iphone13-pro-main.jpg");
 
 // ------------------  Creando Array de Objetos  --------------------
 
 const stockEquipos = [iPhX, iPh11, iPh11Pro, iPh11ProMax, iPh12, iPh12Pro, iPh13, iPh13Pro, iPh13ProMax];
 
 
-const plantillaCard = '<div class="card-main"><img src="" alt="Producto"><h2 class="infoNombre">Nombre del Producto</h2><p class="infoPrecio">Precio: $99.99</p><p class="infoMemoria">Memoria: 128GB</p><p class="infoColor">Color: Negro</p><button class="boton-comprar agregar-carrito">Comprar</button><button class="btn btn-primary mostrar-carrito" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Mostrar Carrito</button></div>'
+const plantillaCard = '<div class="card-main"><img src="" alt="Producto"><h2 class="infoNombre">Nombre del Producto</h2><p class="infoPrecio">Precio: $99.99</p><p class="infoMemoria">Memoria: 128GB</p><p class="infoColor">Color: Negro</p><button class="boton-comprar agregar-carrito">Comprar</button>'
 
-// Obtén el elemento donde deseas mostrar las tarjetas (por ejemplo, un div con el id "resultado")
-const resultadoDiv = document.querySelector("#resultado");
+const resultadoDiv = document.querySelector("#stock");
 
-// Recorre el array de objetos y crea las tarjetas para cada uno
+// Mostrar x DOM cada Equipo que hay en el array
 stockEquipos.forEach(equipo => {
-  // Crea un div y establece la plantilla HTML
+  
   const cardDiv = document.createElement("div");
   cardDiv.innerHTML = plantillaCard;
 
-  // Actualiza los elementos dentro de la plantilla con los datos del objeto
   cardDiv.querySelector("img").src = equipo.imagen;
   cardDiv.querySelector(".infoNombre").textContent = equipo.nombre;
-  cardDiv.querySelector(".infoPrecio").textContent = `Precio: ${equipo.precio}`;
+  cardDiv.querySelector(".infoPrecio").textContent = `Precio: $${equipo.precio}`;
   cardDiv.querySelector(".infoMemoria").textContent = equipo.memoria;
   cardDiv.querySelector(".infoColor").textContent = equipo.color;
 
-  // Agrega la tarjeta completa al div donde deseas mostrar los resultados
+  
   resultadoDiv.appendChild(cardDiv);
 });
 
@@ -51,90 +50,72 @@ stockEquipos.forEach(equipo => {
 
 function buscarDisponibilidad() {
     const nombreCelular = document.getElementById("buscadorInput").value;
-    const equipoEncontrado = stockEquipos.find(celular => celular.nombre == nombreCelular);
+    const equipoEncontrado = stockEquipos.find(celular => celular.id === nombreCelular);
 
-    if (equipoEncontrado) {
-        const resultadoDiv = document.getElementById("resultado");
-
-        // Crear un nuevo elemento para mostrar el resultado
-        const cardElement = document.createElement("div");
-        cardElement.innerHTML = plantillaCard;
-
-        // Relleno de la card Resultado segun el equipo filtrado
-        cardElement.querySelector(".infoNombre").textContent = equipoEncontrado.nombre;
-        cardElement.querySelector(".infoPrecio").textContent = equipoEncontrado.precio;
-        cardElement.querySelector(".infoMemoria").textContent = equipoEncontrado.memoria;
-        cardElement.querySelector(".infoColor").textContent = equipoEncontrado.color;
-        cardElement.querySelector("img").setAttribute("src", equipoEncontrado.imagen);
-
-        // Borrar busqueda anterior antes de agregar nueva card
-        resultadoDiv.innerHTML = "";
-
-        // Agregando la card con le resultado al DOM
-        resultadoDiv.appendChild(cardElement);
-    } else {
-        document.getElementById("resultado").textContent = `No se encontró el celular ${nombreCelular} en el stock.`;
-    }
+    const resultadoDiv = document.getElementById("resultado");
+    resultadoDiv.innerHTML = equipoEncontrado
+        ? `<div class="card-main">
+            <img src="${equipoEncontrado.imagen}" alt="Producto">
+            <h2 class="infoNombre">${equipoEncontrado.nombre}</h2>
+            <p class="infoPrecio">Precio: $${equipoEncontrado.precio}</p>
+            <p class="infoMemoria">${equipoEncontrado.memoria}</p>
+            <p class="infoColor">${equipoEncontrado.color}</p>
+            <button class="boton-comprar agregar-carrito">Comprar</button>
+          </div>`
+        : `No se encontró el celular ${nombreCelular} en el stock.`;
 }
 
 document.getElementById("botonBusqueda").addEventListener("click", buscarDisponibilidad);
 
 let carrito = [];
 
-// Función para guardar el carrito en el localStorage
+let precioDolar; 
+
+fetch("https://api.bluelytics.com.ar/v2/latest")
+.then(response => response.json())
+.then(data => {
+    precioDolar = data.blue.value_avg;
+    restauraCarritoLS();
+}).catch(error => {
+    console.error("Error al obtener la cotización:", error);
+});
+
+function agregarCarrito(producto) {
+    carrito = [...carrito, producto]; 
+    return producto.precio;
+}
+
 function guardaCarritoLS() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-// Llamada para restaurar el carrito del local storage
+
 function restauraCarritoLS() {
     const carritoGuardado = localStorage.getItem("carrito");
     if (carritoGuardado) {
         carrito = JSON.parse(carritoGuardado);
         actualizarCarrito();
+        actualizarNumerito();
     }
 }
-
-// Restaura el carrito al cargar la página
 restauraCarritoLS();
 
-
-// Función para agregar al carrito
-function agregarCarrito(producto) {
-    carrito.push(producto);
+function actualizarNumerito() {
+    const numeritoElement = document.getElementById("numerito");
+    numeritoElement.textContent = carrito.length.toString();
 }
 
-// Función para calcular el precio total
+
 function calcularPreciofinal() {
-    return carrito.reduce((total, producto) => total + parseFloat(producto.precio.substring(1)), 0);
+    return  carrito.reduce((total, producto) => total + parseInt(producto.precio), 0);
 }
 
-// Función para actualizar el contenido del offcanvas
-function actualizarCarrito() {
-    const offcanvasContent = document.querySelector(".offcanvas-body");
-    offcanvasContent.innerHTML = "";
-
-    if (carrito.length === 0) {
-        offcanvasContent.innerHTML = "<h2>El carrito está vacío.</h2>";
-    } else {
-        carrito.forEach((producto, index) => {
-            const productInfo = document.createElement("p");
-            productInfo.textContent = `${producto.nombre} - ${producto.precio}`;
-            offcanvasContent.appendChild(productInfo);
-
-            // Agregar botón de eliminación para cada producto
-            const eliminarProducto = botonEliminar(index);
-            offcanvasContent.appendChild(eliminarProducto);
-        });
-
-        // Mostrar el precio total
-        const totalPriceElement = document.createElement("h3");
-        totalPriceElement.textContent = `Precio Total: $${calcularPreciofinal().toFixed(2)}`;
-        offcanvasContent.appendChild(totalPriceElement);
-    }
+function calcularPrecioFinalDolar() {
+    const precioFinal = calcularPreciofinal();
+    return precioFinal * precioDolar;
 }
 
-// Función para crear un botón de eliminación para cada producto en el carrito
+
 function botonEliminar(index) {
     const eliminarProducto = document.createElement("button");
     eliminarProducto.classList.add("btn", "btn-danger", "eliminar-producto");
@@ -144,20 +125,48 @@ function botonEliminar(index) {
     return eliminarProducto;
 }
 
+function actualizarCarrito() {
+    const contenidoCarrito = document.querySelector(".offcanvas-body");
+    contenidoCarrito.innerHTML = "";
 
-// Función para mostrar un mensaje de que el carrito se actualizó
+    const precioTotalHTML = carrito.length
+        ? `<h3>Precio Total en U$D: $${calcularPreciofinal()}</h3>`
+        : "<h2>El carrito está vacío.</h2>";
+
+    const precioTotalDolarHTML = carrito.length
+        ? `<h4>Precio Total en Pesos: $${calcularPrecioFinalDolar()}</h4>`
+        : "";
+
+    contenidoCarrito.innerHTML = `${precioTotalHTML}${precioTotalDolarHTML}`;
+
+    if (carrito.length) {
+        carrito.forEach((producto, index) => {
+
+            // Info producto
+            const infoProductoAgregado = document.createElement("p");
+            infoProductoAgregado.textContent = `${producto.nombre} - $${producto.precio}`;
+            contenidoCarrito.appendChild(infoProductoAgregado);
+
+            // Boton eliminar
+            const eliminarProducto = botonEliminar(index);
+            contenidoCarrito.appendChild(eliminarProducto);
+        });
+    }
+}
+
+
 function msjActualizacion() {
     Swal.fire({
         position: 'bottom-end',
         icon: 'success',
         title: 'El carrito se ha actualizado!',
         showConfirmButton: false,
-        timer: 1000
+        timer: 500
       })
 }
 
+// Agregar carrito desde resultado de busqueda
 
-// Evento para agregar al carrito desde resultados de búsqueda
 document.getElementById("resultado").addEventListener("click", function(event) {
     const target = event.target;
 
@@ -168,15 +177,36 @@ document.getElementById("resultado").addEventListener("click", function(event) {
 
         if (equipoEncontrado) {
             agregarCarrito(equipoEncontrado);
-            msjActualizacion(`Se agregó ${equipoEncontrado.nombre} al carrito.`);
+            msjActualizacion();
             guardaCarritoLS();
             actualizarCarrito();
+            actualizarNumerito();
+        }
+    }
+});
+
+// Agregar carrito desde el div de stock
+
+document.getElementById("stock").addEventListener("click", function(event) {
+    const target = event.target;
+
+    if (target.classList.contains("agregar-carrito")) {
+        const card = target.closest(".card-main");
+        const nombre = card.querySelector(".infoNombre").textContent;
+        const equipoEncontrado = stockEquipos.find(celular => celular.nombre === nombre);
+
+        if (equipoEncontrado) {
+            agregarCarrito(equipoEncontrado);
+            msjActualizacion();
+            guardaCarritoLS();
+            actualizarCarrito();
+            actualizarNumerito ();
         }
     }
 });
 
 
-// Evento para eliminar un producto del carrito
+// Eliminar un producto del carrito
 document.querySelector(".offcanvas-body").addEventListener("click", function (event) {
     const target = event.target;
 
@@ -188,15 +218,19 @@ document.querySelector(".offcanvas-body").addEventListener("click", function (ev
             showCancelButton: true,
             confirmButtonText: 'Sí, eliminar',
             cancelButtonText: 'Cancelar'
-        });
-
-        Swal.getPopup().querySelector('.swal2-confirm').addEventListener('click', function() {
-            const index = parseInt(target.dataset.index);
-            if (!isNaN(index) && index >= 0 && index < carrito.length) {
-                carrito.splice(index, 1);
-                msjActualizacion(`Se eliminó un producto del carrito.`);
-                guardaCarritoLS();
-                actualizarCarrito();
+        }).then((result) => {
+            if (result.isConfirmed) {
+                return new Promise((resolve) => {
+                    const index = parseInt(target.dataset.index);
+                    if (!isNaN(index) && index >= 0 && index < carrito.length) {
+                        carrito.splice(index, 1);
+                        msjActualizacion(`Se eliminó un producto del carrito.`);
+                        guardaCarritoLS();
+                        actualizarCarrito();
+                        actualizarNumerito();
+                        resolve();
+                    }
+                });
             }
         });
     }

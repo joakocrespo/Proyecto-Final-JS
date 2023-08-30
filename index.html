@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- link css -->
-    <link rel="stylesheet" href="./style.css">
     <!-- link bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- link css -->
+    <link rel="stylesheet" href="./style.css">
     <title>iShop</title>
 </head>
 
@@ -34,9 +34,6 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contacto</a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -44,13 +41,6 @@
     </header>
 
     <!---------------- fin navbar -------------->
-    <!---------------title---------------->
-    <div class="tittle">
-        <h1>
-            Filtrar Stock de Equipos
-        </h1>
-    </div>
-    <!---------------title---------------->
 
     <!------------ buscador -------------->
 
@@ -72,7 +62,9 @@
 
     <main class="main-index">
         <div id="resultado">
-            <p></p>
+        </div>
+        <div id="stock">
+            
         </div>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
@@ -84,6 +76,12 @@
                     Detalles del carrito:
                 </h2>
             </div>
+        </div>
+        <div class="boton-carrito">
+            <div id="numerito" class="contador">0</div>
+            <button id="boton-numerito-carrito" class="btn btn-primary mostrar-carrito" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><div class="icono-carrito">
+                <img src="./assets/1693080567038.png" alt="Carrito">
+            </div></button>
         </div>
 
     </main>
@@ -100,14 +98,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Contacto</a>
-                </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-            </form>
         </div>
     </footer>
 
@@ -118,8 +109,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-    <script src="./main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="./main.js"></script>
 </body>
 
 </html>
