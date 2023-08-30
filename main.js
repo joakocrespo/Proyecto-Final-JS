@@ -89,7 +89,6 @@ function guardaCarritoLS() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-
 function restauraCarritoLS() {
     const carritoGuardado = localStorage.getItem("carrito");
     if (carritoGuardado) {
@@ -114,7 +113,6 @@ function calcularPrecioFinalDolar() {
     const precioFinal = calcularPreciofinal();
     return precioFinal * precioDolar;
 }
-
 
 function botonEliminar(index) {
     const eliminarProducto = document.createElement("button");
